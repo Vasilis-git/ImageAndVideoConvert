@@ -1,0 +1,26 @@
+# Build artifacts
+*.o
+**/*.o
+imgconv
+*.out
+*.exe
+
+# Static analysis / coverage / debug
+*.dSYM/
+*.log
+core
+core.*
+
+# Editor/temp files
+*~
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# macOS
+.DS_Store
+
+# Misc
+tags
+/assets/
