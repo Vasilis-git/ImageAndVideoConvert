@@ -6,8 +6,10 @@
 #include <stdint.h>
 #include "stb_image.h"
 #include "stb_image_write.h"
+#ifndef NO_WEBP
 #include <webp/encode.h>
 #include <webp/decode.h>
+#endif
 
 
 typedef struct {

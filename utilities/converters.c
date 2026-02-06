@@ -188,7 +188,7 @@ int write_jpg_wrapper(const char *path, const Image *img) {
 
     return ok;
 }
-
+#ifndef NO_WEBP
 int write_webp_wrapper(const char *path, const Image *img) {
     float quality = 75.0f;
 
@@ -231,3 +231,4 @@ int write_webp_wrapper(const char *path, const Image *img) {
     WebPFree(out);
     return 1;
 }
+#endif

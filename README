@@ -1,1 +1,2 @@
 build with: dpkg-buildpackage -us -uc
+for arch, from inside imgconv-arch: makepkg -si (in an arch environment)

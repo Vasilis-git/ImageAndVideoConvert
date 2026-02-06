@@ -5,7 +5,9 @@ const Format img_formats[] = {
     {"jpg"},
     {"jpeg"},
     {"jfif"},
+    #ifndef NO_WEBP
     {"webp"},
+    #endif
     {"bmp"},
     {"tga"},
     {"pnm"},
@@ -14,7 +16,9 @@ const size_t img_formats_count = sizeof(img_formats) / sizeof(img_formats[0]);
 
 int write_png(const char *path, const Image *img);
 int write_jpg_wrapper(const char *path, const Image *img);
+#ifndef NO_WEBP
 int write_webp_wrapper(const char *path, const Image *img);
+#endif
 int write_bmp(const char *path, const Image *img);
 int write_tga(const char *path, const Image *img);
 int write_pnm(const char *path, const Image *img);
@@ -24,7 +28,9 @@ const Writer writers[] = {
     {"jpg",  write_jpg_wrapper},
     {"jpeg", write_jpg_wrapper},
     {"jfif", write_jpg_wrapper},
+    #ifndef NO_WEBP
     {"webp", write_webp_wrapper},
+    #endif
     {"bmp",  write_bmp},
     {"tga",  write_tga},
     {"pnm",  write_pnm},

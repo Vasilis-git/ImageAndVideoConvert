@@ -15,6 +15,7 @@ void list_valid_img_formats() {
 }
 int load_image(const char *path, Image *img) {
     img->data = stbi_load(path, &img->width, &img->height, &img->channels, 0);
+    int w = 0, h = 0;
     if (img->data) {
         img->webp_allocated = 0;
         return 1;
@@ -23,7 +24,7 @@ int load_image(const char *path, Image *img) {
     // If stb_image couldn't detect the format, try libwebp as a fallback
     // (useful when stb_image lacks WebP support in this build)
     //fprintf(stderr, "stb failed: %s\n", stbi_failure_reason());
-
+    #ifndef NO_WEBP
     FILE *f = fopen(path, "rb");
     if (!f) return 0;
     if (fseek(f, 0, SEEK_END) != 0) { fclose(f); return 0; }
@@ -36,7 +37,6 @@ int load_image(const char *path, Image *img) {
     if (fread(buf, 1, sz, f) != (size_t)sz) { free(buf); fclose(f); return 0; }
     fclose(f);
 
-    int w = 0, h = 0;
     if (!WebPGetInfo(buf, (size_t)sz, &w, &h)) {
         free(buf);
         return 0;
@@ -46,11 +46,14 @@ int load_image(const char *path, Image *img) {
     uint8_t *pixels = WebPDecodeRGBA(buf, (size_t)sz, &w, &h);
     free(buf);
     if (!pixels) return 0;
+    #endif
 
     img->width = w;
     img->height = h;
     img->channels = 4;
+    #ifndef NO_WEBP
     img->data = pixels;
+    #endif
     img->webp_allocated = 1; // ensure free_image uses WebPFree
     return 1;
 }
@@ -58,8 +61,10 @@ int load_image(const char *path, Image *img) {
 void free_image(Image *img) {
     if (!img || !img->data) return;
     if (img->webp_allocated) {
+        #ifndef NO_WEBP
         WebPFree(img->data);
         img->webp_allocated = 0;
+        #endif
     } else {
         stbi_image_free(img->data);
     }
