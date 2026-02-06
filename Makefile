@@ -2,7 +2,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Iinclude
 TARGET = imgconv
 
-SOURCES = main.c utilities/tools.c utilities/stb_impl.c utilities/converters.c
+SOURCES = main.c utilities/tools.c utilities/stb_impl.c utilities/converters.c utilities/writers.c
 HEADERS = include/tools.h
 OBJECTS = $(SOURCES:.c=.o)
 

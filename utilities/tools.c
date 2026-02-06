@@ -1,7 +1,7 @@
-#include "../include/tools.h"
+#include "../include/writers.h"
 
 const char *match_format(const char *s) {
-    for (size_t i = 0; i < sizeof(img_formats)/sizeof(img_formats[0]); i++) {
+    for (size_t i = 0; i < img_formats_count; i++) {
         if (strcmp(s, img_formats[i].name) == 0)
             return img_formats[i].name;
     }
@@ -9,7 +9,7 @@ const char *match_format(const char *s) {
 }
 void list_valid_img_formats() {
     fprintf(stderr, "Valid image formats are:\n");
-    for (size_t i = 0; i < sizeof(img_formats)/sizeof(img_formats[0]); i++) {
+    for (size_t i = 0; i < img_formats_count; i++) {
         fprintf(stderr, "  %s\n", img_formats[i].name);
     }
 }
@@ -22,7 +22,7 @@ int load_image(const char *path, Image *img) {
 
     // If stb_image couldn't detect the format, try libwebp as a fallback
     // (useful when stb_image lacks WebP support in this build)
-    fprintf(stderr, "stb failed: %s\n", stbi_failure_reason());
+    //fprintf(stderr, "stb failed: %s\n", stbi_failure_reason());
 
     FILE *f = fopen(path, "rb");
     if (!f) return 0;
@@ -110,7 +110,7 @@ int img_convert(const char *input, const char *output) {
     if (!ext) return 0;
     ext++;
 
-    for (size_t i = 0; i < sizeof(writers)/sizeof(writers[0]); i++) {
+    for (size_t i = 0; i < writers_count; i++) {
         if (strcmp(ext, writers[i].ext) == 0) {
             int ok = writers[i].fn(output, &img);
             free_image(&img);

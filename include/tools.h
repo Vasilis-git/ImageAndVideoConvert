@@ -19,13 +19,6 @@ typedef struct {
     const char *name;
 } Format;
 
-static const Format img_formats[] = {
-    {"png"},
-    {"jpg"},
-    {"jpeg"},
-    {"webp"},
-};
-
 typedef struct {
     int width;
     int height;
@@ -40,18 +33,6 @@ typedef struct {
     const char *ext;
     WriteFunc fn;
 } Writer;
-
-int write_png(const char *path, const Image *img);
-int write_jpg_wrapper(const char *path, const Image *img);
-int write_webp_wrapper(const char *path, const Image *img);
-
-static const Writer writers[] = {
-    {"png",  write_png},
-    {"jpg",  write_jpg_wrapper},
-    {"jpeg", write_jpg_wrapper},
-    {"webp", write_webp_wrapper},
-};
-
 
 CmdArgs parse_cmd(int argc, char* argv[]);
 void make_output_filename(const char *input, const char *fmt, char *out, size_t outsz);
