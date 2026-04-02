@@ -26,5 +26,8 @@ windows:
 	x86_64-w64-mingw32-gcc $(CFLAGS) -DNO_WEBP -o imgconv.exe $(SOURCES) -lm
 clean:
 	rm -rf $(BUILDDIR) $(TARGET) $(DEB_TARGETS) imgconv.exe
+install:
+	mkdir -p $(PREFIX)/bin
+	cp imgconv $(PREFIX)/bin/
 
 .PHONY: clean

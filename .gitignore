@@ -26,3 +26,52 @@ tags
 /assets/
 /debian/
 /imgconv-arch/
+# Build artifacts
+*.o
+**/*.o
+imgconv
+imgconv.exe
+*.out
+
+# Build directories
+build/
+.flatpak-builder/
+repo-dir/
+
+# Flatpak builder output (if you use these names)
+build-dir/
+repo/
+
+# Static analysis / coverage / debug
+*.dSYM/
+*.log
+core
+core.*
+
+# Editor/temp files
+*~
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# macOS
+.DS_Store
+
+# Misc
+tags
+
+# Debian packaging artifacts (but NOT the debian/ folder itself)
+debian/*.debhelper
+debian/debhelper-build-stamp
+debian/files
+debian/*.substvars
+debian/imgconv
+debian/imgconv.debhelper.log
+debian/tmp/
+
+# Arch PKGBUILD artifacts (but NOT the imgconv-arch/ folder itself)
+imgconv-arch/src/
+imgconv-arch/pkg/
+imgconv-arch/*.tar.zst
+imgconv-arch/*.pkg.tar.*

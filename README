@@ -1,2 +1,7 @@
 build with: dpkg-buildpackage -us -uc
 for arch, from inside imgconv-arch: makepkg -si (in an arch environment)
+
+flatpak (inside the flatpak folder):
+Build: flatpak-builder --force-clean --repo=repo-dir build-dir com.example.ImgConv.json
+Bundle: flatpak build-bundle repo-dir imgconv.flatpak com.example.ImgConv
+

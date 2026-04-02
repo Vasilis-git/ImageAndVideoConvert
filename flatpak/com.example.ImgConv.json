@@ -1,0 +1,27 @@
+{
+  "app-id": "com.example.ImgConv",
+  "runtime": "org.freedesktop.Platform",
+  "runtime-version": "25.08",
+  "sdk": "org.freedesktop.Sdk",
+  "command": "imgconv",
+  "finish-args": [
+    "--share=network",
+    "--filesystem=home"
+  ],
+  "modules": [
+    {
+      "name": "imgconv",
+      "buildsystem": "simple",
+      "build-commands": [
+        "make",
+        "make install PREFIX=/app"
+      ],
+      "sources": [
+        {
+          "type": "dir",
+          "path": ".."
+        }
+      ]
+    }
+  ]
+}
