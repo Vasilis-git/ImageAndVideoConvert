@@ -1,0 +1,12 @@
+Source: imgconv
+Section: utils
+Priority: optional
+Maintainer: Vasilis basileskouloures@gmail.com
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.6.0
+
+Package: imgconv
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Lightweight image converter written in C
+ A minimal, fast image conversion tool supporting PNG, JPG, WebP, BMP, TGA, PNM, GIF, PSD, HDR.

@@ -24,8 +24,6 @@ core.*
 # Misc
 tags
 /assets/
-/debian/
-/imgconv-arch/
 # Build artifacts
 *.o
 **/*.o
