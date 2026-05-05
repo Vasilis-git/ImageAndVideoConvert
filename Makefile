@@ -27,7 +27,7 @@ windows:
 clean:
 	rm -rf $(BUILDDIR) $(TARGET) $(DEB_TARGETS) imgconv.exe
 install:
-	mkdir -p $(PREFIX)/bin
-	cp imgconv $(PREFIX)/bin/
+	mkdir -p $(DESTDIR)/usr/bin
+	install -m 0755 $(TARGET) $(DESTDIR)/usr/bin/
 
 .PHONY: clean
